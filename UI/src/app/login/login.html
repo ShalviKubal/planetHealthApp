@@ -1,0 +1,74 @@
+
+<style type="text/css">
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background : grey;
+        padding: 10px 0;
+        color: #fff;
+        height: 100px;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    } 
+    input[type=email], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    .login-box{
+        margin-top: 225px;
+    }
+</style>
+<body>
+    <div class="fixed-header">
+    </div>
+    <div class="container login-box">
+        <div class="col-md-8 hidden-sm"></div>
+        <div class="col-md-4">
+          <form name="myForm">
+              
+            <input type="email" name="email" id="emailId" placeholder="Email Address" ng-model="loginCtrl.email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                <span ng-show="myForm.email.$error.required">Email is required.</span>
+                <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+            </span>
+              
+            <input type="password" name="password" placeholder="Password" required ng-model="loginCtrl.password">
+            <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+              <span ng-show="myForm.password.$error.required">Password is required.</span>
+            </span>
+
+            <input type="submit" value="Login"  ng-disabled="myForm.$invalid" ng-click="loginCtrl.login()">
+            <span style="color:red" ng-if = "loginCtrl.errorMessage">
+              <span>{{loginCtrl.errorMessage}}</span>
+            </span>
+          </form>
+        </div>
+    </div>    
+    <div class="fixed-footer">    
+    </div>
+</body>

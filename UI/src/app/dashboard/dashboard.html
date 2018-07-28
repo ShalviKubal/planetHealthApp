@@ -1,0 +1,93 @@
+<style type="text/css">
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+
+    body{
+        font-family: serif;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background : #660066;
+        padding: 10px 0;
+        color: #fff;
+        height: 50px;
+        text-align: center;
+    }
+    .fixed-header{
+        top: 0;
+        font-size: 18px;
+    }
+    .fixed-footer{
+        bottom: 0;
+    } 
+    .fixed-header label{
+        font-size: 18px;
+    }
+    .main-content{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .critical{
+        background-color: #ff666675;
+    }
+    .table-responsive{
+        overflow-x: scroll;
+    }
+    thead tr th{
+        font-size: 15px;
+    }
+    tbody tr td {
+        background-color: #e6f2ff;
+    }
+    .info{
+        background-color: #e6f3ff;
+    }
+    .no-color{
+        background-color: transparent;
+    }
+    thead{
+        background-color: #66ccff;
+    }
+</style>
+<body>
+    <div class="fixed-header">
+        <label>Planetory Data</label>
+    </div>
+    <div class = "main-content well">
+      <div class="table-responsive">          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Battery Voltage</th>
+                <th>Video Loss %</th>
+                <th>Free Disk %</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="item in dashboardCtrl.healthParams  | orderBy:'location' | groupBy:'location'">
+              <tr>
+                <td class="info" ng-show="item.group_by_key">{{ item.location | uppercase}}</td>
+                <td class="no-color" ng-show="!item.group_by_key"></td>
+                <td ng-class="{critical : item.batteryvoltage <8}">{{ item.batteryvoltage }}</td>
+                <td ng-class="{critical : item.videoloss > 20}">{{ item.videoloss }} </td>
+                <td ng-class="{critical : item.freedisk < 20}">{{ item.freedisk }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+    <div>
+        <div class="panel panel-danger" >
+          <div class="panel-heading">Critical units!
+            <div class="well">
+                <div ng-repeat="criticalitem in dashboardCtrl.criticalItems"> {{criticalitem.location}} has a battery voltage of {{ criticalitem.batteryvoltage }}, video loss of {{ criticalitem.videoloss }} %  and freedisk of {{ criticalitem.freedisk }}%
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="fixed-footer"> 
+        <label> Copyright @ 2018 shalvi planetory heath app </label>
+    </div>
+</body>
