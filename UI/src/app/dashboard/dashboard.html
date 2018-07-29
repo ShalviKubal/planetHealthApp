@@ -13,6 +13,7 @@
         color: #fff;
         height: 50px;
         text-align: center;
+        z-index: 1;
     }
     .fixed-header{
         top: 0;
@@ -54,7 +55,8 @@
     <div class="fixed-header">
         <label>Planetory Data</label>
     </div>
-    <div class = "main-content well">
+    <div class = "main-content row">
+        <div class="col-md-6 well">
       <div class="table-responsive">          
           <table class="table">
             <thead>
@@ -77,7 +79,9 @@
           </table>
       </div>
     </div>
-    <div>
+        <div class="col-md-6 well"><div google-chart chart="dashboardCtrl.myChartObject" style="height:600px; width:100%;"></div></div>
+    </div>
+    <div class="row">
         <div class="panel panel-danger" >
           <div class="panel-heading">Critical units!
             <div class="well">
@@ -86,6 +90,7 @@
             </div>
         </div>
         </div>
+        
     </div>
     <div class="fixed-footer"> 
         <label> Copyright @ 2018 shalvi planetory heath app </label>

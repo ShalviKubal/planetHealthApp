@@ -17,7 +17,7 @@ var app = 'app';
 module.exports = app;
 
 angular
-  .module(app, ['ui.router', 'ui.bootstrap', dashboardModule, loginModule, coreServices])
+  .module(app, ['ui.router', 'ui.bootstrap', 'googlechart', dashboardModule, loginModule, coreServices])
   .config(routesConfig)
   .component('app', hello)    
   .filter("groupBy",["$parse","$filter",function($parse,$filter){

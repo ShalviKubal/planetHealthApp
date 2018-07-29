@@ -11,6 +11,27 @@ function dashboardController(healthMonitoringServices, $state, $stateParams){
     self.criticalItems = [];
     self.healthParams= [];
     
+    self.myChartObject = {};
+    
+    self.myChartObject.type = "PieChart";
+
+    self.myChartObject.data = {"cols": [
+        {id: "t", label: "Topping", type: "string"},
+        {id: "s", label: "Slices", type: "number"}
+    ], "rows": [
+        {c: [
+            {v: "Critical Units"},
+            {v: self.criticalItems.length},
+        ]},
+        {c: [
+            {v: "Healthy Units"},
+            {v: self.healthParams.length-self.criticalItems.length}
+        ]}
+    ]};
+
+    self.myChartObject.options = {
+        'title': 'Summary of healthy/critical units'
+    };
      var promise = healthMonitoringServices.getHealthData();            
      promise.then(function(response){
                     self.healthParams = response.data.value;
@@ -20,6 +41,19 @@ function dashboardController(healthMonitoringServices, $state, $stateParams){
                         }
                     console.log(self.healthParams);
                     }
+             self.myChartObject.data = {"cols": [
+                {id: "t", label: "Topping", type: "string"},
+                {id: "s", label: "Slices", type: "number"}
+            ], "rows": [
+                {c: [
+                    {v: "Critical Units"},
+                    {v: self.criticalItems.length},
+                ]},
+                {c: [
+                    {v: "Healthy Units"},
+                    {v: self.healthParams.length-self.criticalItems.length}
+                ]}
+            ]};
                 },
                 function(error){
                     console.error("Some error occured");
@@ -36,9 +70,24 @@ function dashboardController(healthMonitoringServices, $state, $stateParams){
                         }
                     console.log(self.healthParams);
                     }
+                     self.myChartObject.data = {"cols": [
+                        {id: "t", label: "Topping", type: "string"},
+                        {id: "s", label: "Slices", type: "number"}
+                    ], "rows": [
+                        {c: [
+                            {v: "Critical Units"},
+                            {v: self.criticalItems.length},
+                        ]},
+                        {c: [
+                            {v: "Healthy Units"},
+                            {v: self.healthParams.length-self.criticalItems.length}
+                        ]}
+                    ]};
                 },
                 function(error){
                     console.error("Some error occured");
                 });
     }, 30000)
+
+    
 }
