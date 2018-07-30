@@ -2,7 +2,7 @@
 module.exports = {
     template : require('./login.html'),
     controller : loginController,
-    controllerAs : 'loginCtrl' 
+    controllerAs : 'loginCtrl'
 };
 
 function loginController(healthMonitoringServices, $state){
@@ -20,13 +20,16 @@ function loginController(healthMonitoringServices, $state){
             promise.then(function(response){
                     var results = response.data;
                     if(results.errorCode && results.errorCode == "healthapp.login.invalid.usernamepassword"){
-                        self.errorMessage ="Invalid username/password";     
+                        healthMonitoringServices.setAuthenticated(false);
+                        self.errorMessage ="Invalid username/password";
                     }
                     else if(results.message && results.message == "successful.login"){
-                        $state.go('dashboard');
+                        healthMonitoringServices.setAuthenticated(true);
+                        $state.go('app.dashboard');
                     }
                     else{
-                        self.errorMessage ="Some error occured"; 
+                        healthMonitoringServices.setAuthenticated(false);
+                        self.errorMessage ="Some error occured";
                     }
                 },
                 function(error){

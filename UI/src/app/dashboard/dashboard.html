@@ -7,12 +7,11 @@
     }
     .fixed-header, .fixed-footer{
         width: 100%;
-        position: fixed;        
+        position: fixed;
         background : #660066;
         padding: 10px 0;
         color: #fff;
         height: 50px;
-        text-align: center;
         z-index: 1;
     }
     .fixed-header{
@@ -21,9 +20,22 @@
     }
     .fixed-footer{
         bottom: 0;
-    } 
-    .fixed-header label{
+        text-align: center;
+    }
+    .fixed-header .label1{
         font-size: 18px;
+        float:left;
+        margin-left: 10px;
+    }
+    .fixed-header .label2{
+        font-size: 18px;
+        float:right;
+        margin-right: 10px;
+        color: white;
+    }
+    .fixed-header .label2 a{
+      text-decoration: none;
+      color: white;
     }
     .main-content{
         margin-top: 50px;
@@ -34,6 +46,7 @@
     }
     .table-responsive{
         overflow-x: scroll;
+        margin-left: 15px;
     }
     thead tr th{
         font-size: 15px;
@@ -53,11 +66,12 @@
 </style>
 <body>
     <div class="fixed-header">
-        <label>Planetory Data</label>
+        <label class="label1">Planetory Data</label>
+        <label class="label2"><a ui-sref="login">logout</a></label>
     </div>
     <div class = "main-content row">
         <div class="col-md-6 well">
-      <div class="table-responsive">          
+      <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
@@ -90,9 +104,9 @@
             </div>
         </div>
         </div>
-        
+
     </div>
-    <div class="fixed-footer"> 
+    <div class="fixed-footer">
         <label> Copyright @ 2018 shalvi planetory heath app </label>
     </div>
 </body>

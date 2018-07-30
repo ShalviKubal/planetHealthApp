@@ -5,6 +5,7 @@ angular.module(coreServices, [])
     .service('healthMonitoringServices',function($http){
         self = this;
         var name = "Shalvi";
+        self.auth = false;
         return {
             login : function(email,password){
                 var data = {
@@ -17,8 +18,13 @@ angular.module(coreServices, [])
             getHealthData : function(){
                 var result = $http.get("http://localhost:8000/getHealthData");
                 return result;
+            },
+            isAuthenticated : function(){
+              return self.auth;
+            },
+            setAuthenticated : function(value){
+              self.auth = value;
             }
-            
         }
     });
 
