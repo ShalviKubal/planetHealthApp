@@ -8,7 +8,7 @@
     .fixed-header, .fixed-footer{
         width: 100%;
         position: fixed;
-        background : #660066;
+        background :  #622569;
         padding: 10px 0;
         color: #fff;
         height: 50px;
@@ -52,16 +52,16 @@
         font-size: 15px;
     }
     tbody tr td {
-        background-color: #e6f2ff;
+        background-color: #d6d4e0;
     }
     .info{
-        background-color: #e6f3ff;
+        background-color: #cee2e3;
     }
     .no-color{
         background-color: transparent;
     }
     thead{
-        background-color: #66ccff;
+        background-color: #b8a9c9;
     }
 </style>
 <body>
@@ -96,14 +96,14 @@
         <div class="col-md-6 well"><div google-chart chart="dashboardCtrl.myChartObject" style="height:600px; width:100%;"></div></div>
     </div>
     <div class="row">
-        <div class="panel panel-danger" >
+<!--        <div class="panel panel-danger" >
           <div class="panel-heading">Critical units!
             <div class="well">
                 <div ng-repeat="criticalitem in dashboardCtrl.criticalItems"> {{criticalitem.location}} has a battery voltage of {{ criticalitem.batteryvoltage }}, video loss of {{ criticalitem.videoloss }} %  and freedisk of {{ criticalitem.freedisk }}%
                 </div>
             </div>
         </div>
-        </div>
+        </div>-->
 
     </div>
     <div class="fixed-footer">
